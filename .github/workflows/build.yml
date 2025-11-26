@@ -1,0 +1,29 @@
+name: Build Windows EXE
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest  # 这里指定借用 GitHub 的 Windows 电脑
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install pygame pyinstaller
+
+    - name: Build EXE
+      run: |
+        pyinstaller -F -w maze_game_fixed.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Windows-Game-EXE
+        path: dist/maze_game_fixed.exe
