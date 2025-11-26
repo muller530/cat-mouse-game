@@ -20,10 +20,10 @@ jobs:
 
     - name: Build EXE
       run: |
-        pyinstaller -F -w maze_game_fixed.py
+        pyinstaller -F -w cat2.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
         name: Windows-Game-EXE
-        path: dist/maze_game_fixed.exe
+        path: dist/cat2.exe
